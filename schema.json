@@ -1,0 +1,104 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "USCDL Data Model",
+  "description": "Schema for defining data structures for spacecraft subsystems",
+  "type": "object",
+  "required": [
+    "containers"
+  ],
+  "properties": {
+    "containers": {
+      "type": "array",
+      "description": "List of data containers to generate code for",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "description",
+          "items"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the container (struct/interface)",
+            "minLength": 1,
+            "pattern": "^[A-Za-z][A-Za-z0-9_]*$"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the container"
+          },
+          "items": {
+            "type": "array",
+            "description": "List of items (fields) in the container",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": [
+                "name",
+                "type",
+                "description"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Name of the item (field)",
+                  "minLength": 1,
+                  "pattern": "^[A-Za-z][A-Za-z0-9_]*$"
+                },
+                "type": {
+                  "type": "string",
+                  "description": "Data type of the item",
+                  "enum": [
+                    "uint8",
+                    "uint16",
+                    "uint32",
+                    "uint64",
+                    "int8",
+                    "int16",
+                    "int32",
+                    "int64",
+                    "float",
+                    "double",
+                    "bool",
+                    "string"
+                  ]
+                },
+                "description": {
+                  "type": "string",
+                  "description": "Description of the item"
+                },
+                "byteOrder": {
+                  "type": "string",
+                  "description": "Byte order for multi-byte values",
+                  "enum": [
+                    "little",
+                    "big"
+                  ],
+                  "default": "little"
+                },
+                "units": {
+                  "type": "string",
+                  "description": "Units of measurement (if applicable)",
+                  "default": ""
+                },
+                "length": {
+                  "type": "integer",
+                  "description": "Length for array types",
+                  "minimum": 1,
+                  "default": 1
+                },
+                "isArray": {
+                  "type": "boolean",
+                  "description": "Whether this item is an array",
+                  "default": false
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

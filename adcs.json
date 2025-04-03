@@ -1,0 +1,128 @@
+{
+  "containers": [
+    {
+      "name": "ADCSAttitudeState",
+      "description": "Current attitude state of the spacecraft",
+      "items": [
+        {
+          "name": "quaternion",
+          "type": "float",
+          "description": "Quaternion representing the spacecraft attitude",
+          "units": "quaternion",
+          "isArray": true,
+          "length": 4,
+          "byteOrder": "little"
+        },
+        {
+          "name": "angularVelocity",
+          "type": "float",
+          "description": "Angular velocity vector of the spacecraft",
+          "units": "rad/s",
+          "isArray": true,
+          "length": 3,
+          "byteOrder": "little"
+        },
+        {
+          "name": "timestamp",
+          "type": "uint32",
+          "description": "Timestamp of the attitude measurement",
+          "units": "ms",
+          "byteOrder": "little"
+        },
+        {
+          "name": "attitudeDeterminationMode",
+          "type": "uint8",
+          "description": "Current mode of attitude determination",
+          "units": "enum"
+        },
+        {
+          "name": "attitudeValid",
+          "type": "bool",
+          "description": "Flag indicating if the attitude solution is valid"
+        }
+      ]
+    },
+    {
+      "name": "ADCSSensorData",
+      "description": "Raw sensor data from ADCS sensors",
+      "items": [
+        {
+          "name": "magnetometerReadings",
+          "type": "int16",
+          "description": "Raw magnetometer readings",
+          "units": "nT",
+          "isArray": true,
+          "length": 3,
+          "byteOrder": "little"
+        },
+        {
+          "name": "sunSensorReadings",
+          "type": "uint16",
+          "description": "Raw sun sensor readings",
+          "units": "counts",
+          "isArray": true,
+          "length": 6,
+          "byteOrder": "little"
+        },
+        {
+          "name": "gyroscopeReadings",
+          "type": "float",
+          "description": "Gyroscope readings",
+          "units": "rad/s",
+          "isArray": true,
+          "length": 3,
+          "byteOrder": "little"
+        },
+        {
+          "name": "sensorTimestamp",
+          "type": "uint32",
+          "description": "Timestamp of the sensor readings",
+          "units": "ms",
+          "byteOrder": "little"
+        },
+        {
+          "name": "sensorsEnabled",
+          "type": "uint8",
+          "description": "Bitmask of currently enabled sensors"
+        }
+      ]
+    },
+    {
+      "name": "ADCSActuatorCommands",
+      "description": "Commands for the attitude control actuators",
+      "items": [
+        {
+          "name": "reactionWheelSpeeds",
+          "type": "int16",
+          "description": "Commanded reaction wheel speeds",
+          "units": "rpm",
+          "isArray": true,
+          "length": 4,
+          "byteOrder": "little"
+        },
+        {
+          "name": "magnetorquerCommands",
+          "type": "int16",
+          "description": "Commanded magnetorquer dipole moments",
+          "units": "mA·m²",
+          "isArray": true,
+          "length": 3,
+          "byteOrder": "little"
+        },
+        {
+          "name": "commandTimestamp",
+          "type": "uint32",
+          "description": "Timestamp of the actuator commands",
+          "units": "ms",
+          "byteOrder": "little"
+        },
+        {
+          "name": "controlMode",
+          "type": "uint8",
+          "description": "Current ADCS control mode",
+          "units": "enum"
+        }
+      ]
+    }
+  ]
+}
